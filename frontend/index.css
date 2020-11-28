@@ -1,0 +1,121 @@
+:root{
+--text-primary:#967259;
+--dark-coffee:#6F4E37;
+    
+}
+.bg-primary { background-color: #967259;}
+.bg-secondary { background: #ece0d1;}
+.yellow {background: #fcc25a;}
+.purple {background: #d0b2e6;}
+.red {background: #ffe2d2;}
+.f-h{min-height: 100%;}
+.f-w{min-width: 100%;}
+#root {
+    height: 100%;
+  }
+body,html{
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-family: 'Assistant', sans-serif;
+}
+.header {
+    color:#282e34;
+    font-family: 'Nerko One', cursive;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+}
+.logo {
+    font-size:48px;
+}
+.menu-item{
+    list-style-type: none;
+    display: flex;
+    gap: 16px;
+    flex-direction: row;
+}
+.pancake{
+    display: grid;
+    grid-template-rows: auto 480px auto;
+}
+.main {
+    height: 750px;
+    margin-top: 130px;
+}
+.three-col {
+    display: flex;
+    flex: wrap;
+}
+.box {
+    flex: 1 1 400px;
+    margin:0 4px;
+    color: #666;
+    height: auto;
+    padding:16px;
+    background: #f4f4f4;
+}
+.box:hover {
+    transition: 1s ease-in-out;
+    background:#282e34;
+    width: 700px;
+    color: #ddd;
+
+}
+.home-image {
+    background-image: url('image/phone.jpg');
+    height: 750px;
+    position: relative;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.9;
+    background-position: center;
+    text-align: left;
+    margin:73px 0;
+}
+.home-image > .content{  
+    font-family: 'Nerko One', cursive;
+    font-size: 24px;
+    margin: 100px;    
+    color: #6F4E37;    
+}
+ol { list-style-type: none;}
+.wave {
+   position: absolute;
+   bottom:-140px;
+   
+}
+.footer {    
+    background:linear-gradient(var(--text-primary),var(--dark-coffee));
+    position: fixed;
+    top:98%;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.sidebar {
+    width: 300px;
+    height: 600px;
+    background: mintcream;
+    position: fixed;
+    transition: all .5s ease-in-out;
+    transform: translateX(-30rem);
+}
+.sidebar.open {
+transform:translate(0);
+}
+.open {
+ cursor: pointer;
+}
+@media only screen and (max-width: 414px) {
+    .wave{display:none;}
+    .main{margin-top: 0px;}
+    .header{flex-direction: column;}
+    .menu-item{flex-direction: column;}  
+}
+
