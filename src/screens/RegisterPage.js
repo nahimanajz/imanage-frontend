@@ -10,22 +10,25 @@ function RegisterPage(props){
     const[phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [password_confirmation, setPassword_confirmation] = useState('');
+    //const [message, setMessage] = useState('');
 
     const userRegister = useSelector(state => state.userRegister);
     const { loading, userInfo, error } = userRegister;
     const dispatch = useDispatch();
-   const redirect = props.location.search ? props.location.search.split("=")[1]:'/login';
+   const redirect = props.location.search ? props.location.search.split("=")[1]:'/register';
     useEffect(()=> {
-        if(userInfo) {
+        if(userInfo) {            
            props.history.push(redirect);
+
         }
  
     },[userInfo]) //if user state info change then useEffect() will executes it's code
     const submitHandler = (e) => {
         e.preventDefault();
        dispatch(register(name, email, phone, balance, password, password_confirmation));
-
     }
+    console.log(userInfo);
+  
     return ( 
         <div className="form">
             <form onSubmit={submitHandler}>
@@ -35,6 +38,7 @@ function RegisterPage(props){
                     </li>
                     <li>{ loading && <div>Please wait ...</div>}             
                         { error && <div>{ error } </div> }
+                        
                     </li>
                     <li>
                         <label htmlFor="name">  name </label>                          
@@ -64,8 +68,8 @@ function RegisterPage(props){
                         <button className="button primary" type="submit"> Register</button>
                     </li>
                     <li> Already has an Account ?
-                        <Link to={redirect === "/" ? 'signin': 'signin/redirect=' + redirect} 
-                            className="button text-center secondary">
+                        <Link to='/login' className="button text-center secondary">
+                            LOGIN
                         </Link>
 
                     </li>
