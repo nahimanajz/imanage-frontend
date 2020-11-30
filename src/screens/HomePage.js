@@ -1,4 +1,7 @@
+import { userInfo } from "../helpers/userInfo";
+
 function HomePage(){
+    console.log(userInfo);
     return (<div style={{marginTop: '-178px'}}>
                 <div className="home-image">
                     <div className="content">
