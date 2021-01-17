@@ -26,12 +26,15 @@ function RegisterPage(props){
     const submitHandler = (e) => {
         e.preventDefault();
        dispatch(register(name, email, phone, balance, password, password_confirmation));
-    }
-    console.log(userInfo);
-  
+    } 
     return ( 
-        <div className="form">
-            <form onSubmit={submitHandler}>
+        <main>
+            <ul className="aside">                
+                <li>use imanage to record your expenses</li>
+                <li>use loans</li>
+                <li>use imanage to record your expenses</li>
+            </ul>            
+            <form onSubmit={submitHandler} className="container">
                 <ul className="form-container">
                     <li>
                         <h2>Create Account</h2>
@@ -76,7 +79,11 @@ function RegisterPage(props){
                     
                 </ul>
             </form>
-        </div>
+      
+        </main>
+        
+   
+        
     )
 } 
 export default RegisterPage;

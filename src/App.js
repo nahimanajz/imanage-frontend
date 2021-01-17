@@ -22,7 +22,7 @@ function App() {
   return (
     <BrowserRouter>
         <div className="pancake">
-              <div className="header yellow f-w">
+              <div className="header f-w">
                   <div className="logo">iManage</div>
                   <div className="nav-menu">
                       <ul className="menu-item">
