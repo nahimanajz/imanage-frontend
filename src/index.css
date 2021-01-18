@@ -12,6 +12,9 @@
   .f-w{min-width: 100%;}
   .img64x64 {height: 128; width: 512px;}
   .white-box{ box-shadow: 0 4px 4px #aaa;background: white;}
+  .text-center { text-align: center;}
+  .close { float: right; color: white; font-size: 32px;}
+  .p-1 { padding:4px;} 
 
   #root {
       height: 100%;
@@ -142,7 +145,10 @@
     border: .1rem #808080 solid;
     border-radius: 0.5rem;
     cursor: pointer;
-  
+  }
+  .button-sm {
+    height: 24px;
+    width: 40px;
   }
   .button:hover {
     border: .1rem #404040 solid;
@@ -180,24 +186,39 @@
     background: rgba(0, 0, 0, 0.75);
     top: 0;
     left: 0;
-    /* justify-content: center; */
-    /* align-items: center; */
+    justify-content: center;
+    align-items: center;
     display: flex;
     position: fixed;
+    display: none;
 
   }
   .modal{
     width: 70vh;
-    height: 60vh;
-    margin-left: 30%;
-    transition: all 1.5s ease-in-out; 
-    transform: translate(50%, 50%);
+    height: auto;
+    align-self: center;
+    position: fixed;
+    transition: all 1s ease-in-out;
+    transform: translate(0%, -100%);
+  }
+  .modal-bg.open, .modal {
+    display: block;
+  }
+  .modal-bg.open > .modal {
+    transform: translate(50%, 10%);
+  }
   
+  .modal-sm {
+    height: 400px;
+    width: 400px;
+    position: fixed;
+    transition: all .5s ease-in-out;
+    transform: translate(50rem, -50rem);    
   }
-  .modal-bg.open {
-    transform: translate(0);
+  .modal-sm.active {
+    transform: translate(50rem, 0);
+  }
 
-  }
   .sidemenu li { list-style-type: none; border-bottom: 2px solid var(--text-primary); padding:16px;}
   tbody> tr > td,th { border-bottom: 1px solid #c4c2c3; padding: 16px;}
   th {border-top: 1px solid #c4c2c3 ;}

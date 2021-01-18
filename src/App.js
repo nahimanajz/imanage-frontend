@@ -9,6 +9,7 @@ import DebitPage from "./screens/DebitPage";
 import ExpensePage from "./screens/ExpensePage";
 
 import { BrowserRouter, Link,Route } from "react-router-dom";
+import CreditPage from "./screens/CreditPage";
 
 const openSidebar = () => {
   document.querySelector('.sidebar').classList.add('open');
@@ -45,6 +46,7 @@ function App() {
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/debits" component={DebitPage} />
+                <Route path="/credits" component={CreditPage} />
                 <Route path="/expenses" component={ExpensePage} />
               </div>
               <aside className="sidebar">

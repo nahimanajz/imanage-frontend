@@ -7,7 +7,7 @@ function LoginPage(props){
     const [email, setEmail ] =  useState('');
     const [password, setPassword ] = useState('');
     
-    const redirect = props.location.search? props.location.search.split["="][1]:'/dashboard';
+    const redirect = props.location.search? props.location.search.split["="][1]:'/expenses';
     const dispatch = useDispatch();
     
     const submitHandler = (e)=> {
