@@ -1,1 +1,2 @@
-export  const URL_INDEX = "http://127.0.0.1:8000/api"|| "http://localhost/public/api";
+//export  const URL_INDEX = "http://127.0.0.1:8000/api"|| "http://localhost/public/api" || "https://fathomless-taiga-31341.herokuapp.com/api";
+export  const URL_INDEX = "https://fathomless-taiga-31341.herokuapp.com/api" || "http://127.0.0.1:8000/api";

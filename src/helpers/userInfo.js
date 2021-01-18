@@ -1,3 +1,3 @@
-export const userInfo = () => {
- return JSON.parse(localStorage.getItem('userInfo'));
-} 
+export const userInfo = () => JSON.parse(localStorage.getItem('userInfo'));
+export const headers = {'Authorization' : 'Bearer '+userInfo()['token']};
+export const user_id  = JSON.parse(localStorage.getItem('user'))['id'];

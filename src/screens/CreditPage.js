@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import{openModal, closeModal, openPayModal} from '../helpers/popups';
 
-function DebitPage(props) {
-    const [debitor, setDebitor] = useState('');
+function CreditPage(props) {
+    const [creditor, setCreditor] = useState('');
     const [phone, setPhone] = useState('');
     const [timeToPay, setTimeToPay] = useState('');
     const [amount, setAmount] = useState('');
@@ -13,18 +13,18 @@ function DebitPage(props) {
     return (
         <main>
             <ul className="aside sidemenu white-box">
-                <li> Debits</li>          
-                <li onClick={openModal}>Add debits</li>            
+                <li> Credits</li>          
+                <li onClick={openModal}>Add Credits</li>            
                 {/* <li> New expense category</li>             */}                
             </ul>
             <div className="container">
                 1. list of debists
-                2. add new debit
-                3. Modal of new payment based on id of debit
+                2. add new Credit
+                3. Modal of new payment based on id of Credit
                 <table className="f-w white-box mr-3">
                     <tr>
                         <th>No</th>
-                        <th>Debitor</th>
+                        <th>Creditor</th>
                         <th>phone</th>
                         <th>Amount</th>
                         <th>Current Payment</th>
@@ -76,8 +76,8 @@ function DebitPage(props) {
                     <form className="container">
                         <ul className="form-container">
                         <li>
-                            <label htmlFor="debitor">  Debitor </label>                          
-                            <input type="text" name="debitor" id="debitor" onChange={(e)=> setDebitor(e.target.value)} required/>
+                            <label htmlFor="Creditor">  Creditor </label>                          
+                            <input type="text" name="Creditor" id="Creditor" onChange={(e)=> setCreditor(e.target.value)} required/>
                         </li>
                         <li>
                             <label htmlFor="phone">  Phone </label>                          
@@ -93,7 +93,7 @@ function DebitPage(props) {
                         </li>                       
                         
                         <li>
-                            <button className="button bg-primary">SAVE Debit</button>
+                            <button className="button bg-primary">SAVE Credit</button>
                         </li>
 
                         </ul>
@@ -120,4 +120,4 @@ function DebitPage(props) {
         </main>    
     )
 }
-export default DebitPage;
+export default CreditPage;
