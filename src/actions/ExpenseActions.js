@@ -8,7 +8,7 @@ const saveExpense = (amount,  category, user_id ) => async(dispatch) => {
 dispatch({type: ec.EXPENSE_REGISTER_REQUEST, payload:{ amount,  category, user_id}});
 try {
     const { data } = await axios.post(route.URL_INDEX+"/expenses", {amount, category, user_id}, { headers: headers});
-   console.log('these are ', data);
+   
     dispatch({type: ec.EXPENSE_SUCCESS_REQUEST, payload: data.expense});
    
     console.log(JSON.stringify(data.message));
