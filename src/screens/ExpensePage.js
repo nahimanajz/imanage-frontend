@@ -3,6 +3,7 @@ import{openModal, closeModal} from '../helpers/popups';
 import { useDispatch, useSelector } from "react-redux";
 import {saveExpense, getExpenses} from '../actions/ExpenseActions';
 import { headers, userInfo, user_id } from "../helpers/userInfo";
+import moment from "moment";
 
 function ExpensePage(props) {
     const [amount, setAmount] = useState('');
@@ -47,7 +48,7 @@ function ExpensePage(props) {
                           return (
                             <tr key={expense.id}>
                                 <td> {++count} </td>
-                                <td>{expense.date}  </td>
+                                <td>{moment(expense.date).format("dddd, MMMM Do YYYY, h:mm:ss a") || expense.created_At } </td>
                                 <td>{expense.category}  </td>
                                 <td>{expense.amount}  </td>
                                 
