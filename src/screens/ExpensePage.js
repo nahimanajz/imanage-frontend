@@ -1,27 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import{openModal, closeModal} from '../helpers/popups';
 import { useDispatch, useSelector } from "react-redux";
-import {saveExpense} from '../actions/ExpenseActions';
+import {saveExpense, getExpenses} from '../actions/ExpenseActions';
 import { headers, userInfo, user_id } from "../helpers/userInfo";
 
 function ExpensePage(props) {
     const [amount, setAmount] = useState('');
     const [category, setCategory] = useState('');
 
-    const expenseRegister = useSelector(state => state.expenseRegister);
-    const { expenseLoading, expensesError, expenses } = expenseRegister;
-    const data = {
-        amount,
-        category,
-        user_id
-    };
+    const allExpenses = useSelector(state => state.expenses);
+    const {loading, error, expenses, expenseLoading, expensesError } = allExpenses;
+   
     const dispatch = useDispatch();
+
     const handleSubmit = (e) => {
      e.preventDefault();     
      dispatch(saveExpense(amount, category, user_id));
-  
-  
     }
+    useEffect(()=>  {      
+        dispatch(getExpenses());
+    } , []);
+    console.log(allExpenses);
+    let count = 0;
     return (
         <main>
             <ul className="aside sidemenu white-box">
@@ -30,29 +30,35 @@ function ExpensePage(props) {
                 {/* <li> New expense category</li>             */}                
             </ul>
             <div className="container">
-               {expenseLoading && <div className="warning">expenseLoading</div>}
-               {expensesError && <div className="warning"> {expensesError}</div>}
-
-                <table className="f-w white-box mr-3">
+                {loading && <div>Still loading</div>}
+                {error && <div>{error}</div> }                
+                  
+                    <table className="f-w white-box mr-3">
                     <tr>
                         <th>No</th>
-                        <th>Category</th>
                         <th>Date</th>
+                        <th>Category</th>
                         <th>Amount</th>
                     </tr>
+                               
                     <tbody>
-                            
-                      
-                       <tr>
-                            <td>4</td>
-                            <td>leisures</td>
-                            <td>12/Jan/2020</td>
-                            <td>10000 Rwf</td>
-                        </tr>
-                            
-                           
+                       {  expenses && expenses.length > 0 &&                 
+                          expenses.map(expense => {
+                          return (
+                            <tr key={expense.id}>
+                                <td> {++count} </td>
+                                <td>{expense.date}  </td>
+                                <td>{expense.category}  </td>
+                                <td>{expense.amount}  </td>
+                                
+                           </tr>   
+                          )  
+                         })  
+                        }                        
                     </tbody>
                 </table>
+              
+               
             </div>
             <div className="modal-bg">
                 <div className="modal white-box">
@@ -60,7 +66,9 @@ function ExpensePage(props) {
                     <div className="bg-primary p-1">
                         <span onClick={closeModal} className="close">X</span>
                         <h2 className="text-center">Record Expense</h2>
-                    </div>                    
+                    </div>                   
+                    {expenseLoading && <div className="warning">expenseLoading</div>}
+                    {expensesError && <div className="warning"> {expensesError}</div>}             
                     <form className="container" onSubmit={handleSubmit}>
                         <ul className="form-container">
                         <li>
