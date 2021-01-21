@@ -23,8 +23,7 @@ const getExpenses = () => async (dispatch) => {
     dispatch({type: ec.FECTCH_EXPENSES_REQUEST});
     try {
         const { data } = await axios.get(route.URL_INDEX+"/expenses", { headers: headers });   
-        dispatch({type:ec.FECTCH_EXPENSES_SUCCESS, payload: data});
-       
+        dispatch({type:ec.FECTCH_EXPENSES_SUCCESS, payload: data});      
         
     } catch (error) {
         dispatch({type: ec.FECTCH_EXPENSES_FAIL, payload: error.message});
