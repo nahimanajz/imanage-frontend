@@ -1,4 +1,5 @@
 import {toast} from 'react-toastify';
+import moment from 'moment';
 
 const openModal = () => document.querySelector('.modal-bg').classList.add("open");
 const closeModal = () => document.querySelector('.modal-bg').classList.remove("open");
@@ -13,5 +14,11 @@ const message = (data, errors)=> {
         toast.success(data.message);
     }   
 }
+const formatDate =(date)=> moment(date).format("YYYY-MM-DD HH:mm:ss");
+const payedAmount =(amount)=>  amount ===0 ? "No payment": amount;
 
-export {openModal, closeModal, openPayModal, message};
+const recordPayment =(paymentType, id, amount) => {
+
+}
+
+export {openModal, closeModal, openPayModal, message, formatDate, payedAmount};

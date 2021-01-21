@@ -1,15 +1,40 @@
-import { useState } from 'react';
-import{openModal, closeModal, openPayModal} from '../helpers/popups';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { listCredits, saveCredit, saveCreditPayment } from '../actions/CreditActions';
+
+import { user_id } from '../helpers/userInfo';
+import{openModal, closeModal, openPayModal, formatDate, payedAmount} from '../helpers/popups';
 
 function CreditPage(props) {
     const [creditor, setCreditor] = useState('');
     const [phone, setPhone] = useState('');
     const [timeToPay, setTimeToPay] = useState('');
     const [amount, setAmount] = useState('');
+    const [credit_id, setCreditId] = useState(0);
+    const [amoutToPay, setAmountToPay] = useState(0);
 
-    //additionally user id has to be supplied on this post request
-    const recordPayment = (id, paymentType) => {}
-    
+    const allCredits = useSelector((state)=>state.credits);
+    const {credits} = allCredits;
+    const dispatch = useDispatch();
+    const getCreditId = (credit) => openPayModal()? setCreditId(credit.id) : openPayModal(); 
+    const submitCredit = (e) => {
+        e.preventDefault();    
+        const data = { creditor, phone, timeToPay:formatDate(timeToPay), amount, user_id };
+        dispatch(saveCredit(data));
+    };
+    const handlerCreditPay = (e) => {
+            e.preventDefault();
+            const credit = {
+                credit_id: credit_id,
+                amount: amoutToPay
+            };
+            dispatch(saveCreditPayment(credit));
+        }
+        useEffect(()=>{
+            dispatch(listCredits());
+
+        }, []);
+        let count=0;
     return (
         <main>
             <ul className="aside sidemenu white-box">
@@ -31,38 +56,22 @@ function CreditPage(props) {
                         <th>Remaining Days To pay</th>
                         <th>Actions</th>
                     </tr>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>KASIM SOLEIMAN</td>
-                            <td>+25078 xx-xx-xxx </td>
-                            <td>1,0000,0000 RWF</td>
-                            <td>4,0000 RWF</td>
-                            <td class="text-danger"> Delayed 23 days</td>
-                            {/* <td><button className="button-sm" onClick={recordPayment(1, 2)}>Edit</button></td> */}
-                        </tr> 
-                        <tr>
-                            <td>2</td>
-                            <td>Hassan</td>
-                            <td>+25078 53 35</td>
-                            <td>1,0000 RWF</td>
-                            <td>0</td>
-
-                            <td class="text-warning"> 2 days remaining</td>
-                            <td><button className="button-sm" onClick={openPayModal}>Edit</button></td>
-
-                        </tr>  
-                        <tr>
-                            <td>3</td>
-                            <td>Someone's name</td>
-                            <td>+25078 53 35</td>
-                            <td>4,0000 RWF</td>
-                            <td>4,00 RWF</td>
-
-                            <td class="text-success"> remaining 2 days </td>
-                            {/* <td><button className="button-sm" onClick={recordPayment(1, 2)}>Edit</button></td> */}
-
-                        </tr>                   
+                    <tbody>                      
+                    { credits && credits.length > 0 &&
+                        credits.map(credit => {
+                            return (
+                                <tr key={credit.id}>
+                                    <td>{++count}</td>
+                                    <td>{credit.creditor }</td>
+                                    <td>{credit.phone } </td>
+                                    <td>{credit.amount } </td>
+                                    <td> { payedAmount(credit.payedAmount)}</td>                                  
+                                    <td> { credit.remainingDays}</td>                                    
+                                    <td><button className="button-sm" onClick={ () => getCreditId(credit)}>Edit</button></td>
+                            </tr> 
+                            )
+                        })
+                    }             
                     </tbody>
                 </table>
             </div>
@@ -73,11 +82,11 @@ function CreditPage(props) {
                         <span onClick={closeModal} className="close">X</span>
                         <h2 className="text-center">Record Expense</h2>
                     </div>                    
-                    <form className="container">
+                    <form className="container" onSubmit={submitCredit}>
                         <ul className="form-container">
                         <li>
                             <label htmlFor="Creditor">  Creditor </label>                          
-                            <input type="text" name="Creditor" id="Creditor" onChange={(e)=> setCreditor(e.target.value)} required/>
+                            <input type="text" name="creditor" id="creditor" onChange={(e)=> setCreditor(e.target.value)} required/>
                         </li>
                         <li>
                             <label htmlFor="phone">  Phone </label>                          
@@ -93,7 +102,7 @@ function CreditPage(props) {
                         </li>                       
                         
                         <li>
-                            <button className="button bg-primary">SAVE Credit</button>
+                            <button className="button bg-primary" type="submit">SAVE Credit</button>
                         </li>
 
                         </ul>
@@ -102,14 +111,14 @@ function CreditPage(props) {
             </div>
             <div className="modal-sm">
             {/* <div className="modal-content"> */}
-                   <form className="form-container white-box">
+                   <form className="form-container white-box" onSubmit={handlerCreditPay}>
                        <ul className="form">
                            <li>
                                <label>Amount</label>
-                               <input type="text"/>
+                               <input type="text" name="amountToPay" onChange={(e) => setAmountToPay(e.target.value)}/>
                            </li>
                            <li>
-                               <button className="btn-sm">Pay</button>
+                               <button className="btn-sm" type="submit">Pay</button>
                            </li>
                        </ul>
                    </form>
