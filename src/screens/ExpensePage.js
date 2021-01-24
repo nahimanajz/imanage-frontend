@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {saveExpense, getExpenses} from '../actions/ExpenseActions';
 import { headers, userInfo, user_id } from "../helpers/userInfo";
 import moment from "moment";
+import { FaWindowClose } from 'react-icons/fa';
+
 
 function ExpensePage(props) {
     const [amount, setAmount] = useState('');
@@ -30,11 +32,11 @@ function ExpensePage(props) {
                 <li onClick={openModal}>Add expenditure</li>            
                 {/* <li> New expense category</li>             */}                
             </ul>
-            <div className="container">
+            <ul className="container">
                 {loading && <div>Still loading</div>}
-                {error && <div>{error}</div> }                
+                {error && <div>{error}</div> }               
                   
-                    <table className="f-w white-box mr-3">
+                    <table className="f-w white-box mr-3 purple">
                     <tr>
                         <th>No</th>
                         <th>Date</th>
@@ -60,12 +62,12 @@ function ExpensePage(props) {
                 </table>
               
                
-            </div>
+            </ul>
             <div className="modal-bg">
                 <div className="modal white-box">
 
                     <div className="bg-primary p-1">
-                        <span onClick={closeModal} className="close">X</span>
+                        <span onClick={closeModal} className="close"> <FaWindowClose /></span>
                         <h2 className="text-center">Record Expense</h2>
                     </div>                   
                     {expenseLoading && <div className="warning">expenseLoading</div>}

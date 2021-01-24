@@ -9,7 +9,7 @@
 .purple {background: #d0b2e6;}
 .red {background: #ffe2d2;}
 .f-h{min-height: 100%;}
-.f-w{min-width: 100%;}
+.f-w{min-width: 90vh;}
 #root {
     height: 100%;
   }
@@ -94,7 +94,7 @@ ol { list-style-type: none;}
     top:98%;
 }
 .header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
 }

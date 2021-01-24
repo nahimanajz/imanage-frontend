@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { saveCredit } from "../actions/CreditActions";
 import { closeModal, formatDate } from "../helpers/popups";
 import { user_id } from '../helpers/userInfo';
+import { FaWindowClose } from 'react-icons/fa';
+
 
 const CreditForm = ()=> {
     const [creditor, setCreditor] = useState('');
@@ -22,7 +24,7 @@ const CreditForm = ()=> {
         <div className="modal white-box">
 
             <div className="bg-primary p-1">
-                <span onClick={closeModal} className="close">X</span>
+                <span onClick={closeModal} className="close"><FaWindowClose /></span>
                 <h2 className="text-center">Record Credits</h2>
             </div>                    
             <form className="container" onSubmit={submitCredit}>
