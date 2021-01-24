@@ -35,7 +35,7 @@ function App() {
                     </ul>                             
                        <Menu />                                  
                     <ul className="menu-item">
-                       {userInfo()['user'].balance && <FaUserCircle onClick={openSidebar}/> }
+                       {/* {userInfo()['user'].balance && <FaUserCircle onClick={openSidebar}/> } */}
                       
                     </ul>  
               </div>             
