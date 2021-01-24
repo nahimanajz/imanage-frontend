@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { name } from '../helpers/userInfo';
-const Menu =() => {  
+const Menu = () => {  
     if(name !==undefined) {
       return (
         <ul className="menu-item">
