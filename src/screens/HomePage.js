@@ -1,8 +1,8 @@
 import { userInfo } from "../helpers/userInfo";
 
 function HomePage(){
-    console.log(userInfo);
-    return (<div style={{marginTop: '-178px'}}>
+  
+    return (<div className="main">
                 <div className="home-image">
                     <div className="content">
                         <h2>iManage helps you to:</h2>
@@ -17,20 +17,21 @@ function HomePage(){
                     </svg>             
                 </div>
                 <div className="main">
-                    <h1 className="bdf-title">What you can do with iManage</h1>
+                    <h1 className="title-1 text-center mt-5">Why imanage</h1>
                     <div className="three-col">
                         <div className="box animate">
-                            <h2>Expenses</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati, iste? Error consectetur facilis architecto aspernatur recusandae sunt, odit officiis placeat ex. Nihil, quidem!</p>
+                            <h2 className="title text-center">Expenses</h2>
+                            <p> Sometimes it's really confusing to know How you used your money</p>
+                            <p>But it should no longer be a problem, iManage helps you to Calculate those expenditure</p>
                         </div>
                         <div className="box">
-                            <h2>Debits</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati, iste? Error consectetur facilis architecto aspernatur recusandae sunt, odit officiis placeat ex. Nihil, quidem!</p>
-
+                        <h2 className="title text-center">Debits</h2>
+                            <p>Calculate money you owe your friends and time to pay them before you look bad among them </p>
                         </div>
                         <div className="box">
-                            <h2>Credits</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati, iste? Error consectetur facilis architecto aspernatur recusandae sunt, odit officiis placeat ex. Nihil, quidem!</p>
+                             <h2 className="title text-center">Credits</h2>
+                             <p> Did anybody ask you to pay him then you don't recognize when ? and how much he gave you ?</p>
+                             <p> Use imanage to say Good bye to the confusions like those</p>
                         </div>
                     </div>
                 </div>                  

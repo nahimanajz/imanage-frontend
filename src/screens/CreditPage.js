@@ -9,13 +9,13 @@ import Pagination from '../components/Pagination';
 function CreditPage(props) {
     
     const [credit_id, setCreditId] = useState(0);
-    const [amoutToPay, setAmountToPay] = useState(0);
+    const [amoutToPay, setAmountToPay] = useState(1);
 
     const [currentPage, setCurrentPage] =  useState(1);
     const [creditsPerPage] = useState(1);
 
-    const allCredits = useSelector((state)=>state.credits);
-    const {credits} = allCredits;
+    const allCredits = useSelector((state) => state.credits);
+    const { credits } = allCredits;
     const dispatch = useDispatch();
     const getCreditId = (credit) => openPayModal()? setCreditId(credit.id) : openPayModal(); 
     
@@ -40,8 +40,6 @@ function CreditPage(props) {
 
         const paginate = pageNumber => setCurrentPage(pageNumber);
         
-
-
     return (
         <main>
             <ul className="aside sidemenu white-box">
@@ -49,8 +47,8 @@ function CreditPage(props) {
                 <li onClick={openModal}>Add Credits</li>            
                 {/* <li> New expense category</li>             */}                
             </ul>
-            <div className="container">
-                <table className="f-w white-box mr-3">
+            <ul className="container mr-3">
+                <table className="f-w white-box">
                     <tr>
                         <th>No</th>
                         <th>Creditor</th>
@@ -84,7 +82,7 @@ function CreditPage(props) {
                      paginate={ paginate }
                 />
 
-            </div>
+            </ul>
             <CreditForm />
             <div className="modal-sm">
             <div className="modal-content">
@@ -99,10 +97,8 @@ function CreditPage(props) {
                            </li>
                        </ul>
                    </form>
-               </div>
+               </div>,
             </div>
-               
-           
         </main>    
     )
 }

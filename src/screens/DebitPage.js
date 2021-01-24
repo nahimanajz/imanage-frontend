@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listDebits, saveDebit, saveDebitPayment } from '../actions/DebitActions';
 import {user_id} from "../helpers/userInfo"
 import{openModal, closeModal, openPayModal, formatDate, payedAmount} from '../helpers/popups';
+import { Loading } from '../helpers/popover';
+import { FaWindowClose } from 'react-icons/fa';
+
 
 function DebitPage(props) {
     const [debitor, setDebitor] = useState('');
@@ -44,11 +47,9 @@ function DebitPage(props) {
                 <li onClick={openModal}>Add debits</li>            
                 {/* <li> New expense category</li>             */}                
             </ul>
-            <div className="container">               
-
-                {debitsLoading && <div>Please wait ...</div>}
+            <ul className="container">               
+                
                 {debitsError && <div>{debitsError}</div>}
-
                 <table className="f-w white-box mr-3">
                     <thead>
                         <tr>
@@ -62,6 +63,7 @@ function DebitPage(props) {
                         </tr>
                     </thead>
                     <tbody>
+                    {debitsLoading && <Loading />}
                     { debits && debits.length > 0 &&
                         debits.map(debit => {
                             return (
@@ -80,12 +82,12 @@ function DebitPage(props) {
                                             
                     </tbody>
                 </table>
-            </div>
+            </ul>
             <div className="modal-bg">
                 <div className="modal white-box">
 
                     <div className="bg-primary p-1">
-                        <span onClick={closeModal} className="close">X</span>
+                        <span onClick={closeModal} className="close"><FaWindowClose /></span>
                         <h2 className="text-center">Record A Debit</h2>
                     </div>         
                     <div>
@@ -134,9 +136,7 @@ function DebitPage(props) {
                        </ul>
                    </form>
                {/* </div> */}
-            </div>
-               
-           
+            </div> 
         </main>    
     )
 }
