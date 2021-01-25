@@ -43,9 +43,9 @@ function App() {
                   <FaWindowClose onClick={closeSidebar} size={32}/>                  
               </aside>
               
-              <div className="footer bg-primary">
+              <footer className="footer bg-primary">
                   Developed By <a href="janvierdev.netlify.app"> 	&#169; Janvier</a>
-              </div>
+              </footer>
           </div>        
             <Route path="/homepage" component={HomePage} />
             <Route path="/register" component={RegisterPage} />

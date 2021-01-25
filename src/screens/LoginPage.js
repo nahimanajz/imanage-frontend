@@ -18,7 +18,7 @@ function LoginPage(props){
     return ( 
         <main>
             <div className="aside">            
-                <img src="../images/loginImage.jpg" alt="login image" className="img64x64"/>             
+                           
             </div>
             <form onSubmit={submitHandler} className="container">
             <ul className="form-container">
@@ -40,11 +40,11 @@ function LoginPage(props){
                 <li>
                     <button className="button primary" type="submit"> Sign in</button>
                 </li>
-                <li> New to iManage? </li>
-                <li>
-                    <Link to='/register'>
-                        Signup
-                    </Link>
+                <li>                
+                    <div className="flex-inline">
+                        <label>New to iManage?</label> 
+                        <label><Link to='/register' className="text-link">   Sign up </Link></label>
+                    </div>
                 </li>
             </ul>
         </form>

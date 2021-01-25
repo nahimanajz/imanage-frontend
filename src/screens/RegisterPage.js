@@ -29,20 +29,15 @@ function RegisterPage(props){
     } 
     return ( 
         <main>
-            <ul className="aside">                
-                <li>use imanage to record your expenses</li>
-                <li>use loans</li>
-                <li>use imanage to record your expenses</li>
-            </ul>            
-            <form onSubmit={submitHandler} className="container">
+            <div className="aside">            
+             <ul>
+                { loading && <div>Please wait ...</div>}             
+                { error && <div>{ error } </div> }
+             </ul>    
+            </div>       
+            <form onSubmit={submitHandler} className="container">                
                 <ul className="form-container">
-                    <li>
-                        <h2>Create Account</h2>
-                    </li>
-                    <li>{ loading && <div>Please wait ...</div>}             
-                        { error && <div>{ error } </div> }
-                        
-                    </li>
+                    <li className="text-center title">Sign up </li>  
                     <li>
                         <label htmlFor="name">  name </label>                          
                         <input type="text" name="name" id="name" onChange={(e)=> setName(e.target.value)}/>
@@ -70,11 +65,11 @@ function RegisterPage(props){
                     <li>
                         <button className="button primary" type="submit"> Register</button>
                     </li>
-                    <li> Already has an Account ?
-                        <Link to='/login'>
-                           Sign in
-                        </Link>
-
+                    <li>
+                        <div className="flex-inline">
+                            <label>Already has an Account ?</label> 
+                            <label><Link to='/login' className="text-link">   Sign in </Link></label>
+                        </div>
                     </li>
                     
                 </ul>
