@@ -13,11 +13,11 @@ function HomePage(){
                         </ol>                      
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="wave f-w">
-                        <path fill="#f3f4f5" fill-opacity="1" d="M0,160L60,170.7C120,181,240,203,360,181.3C480,160,600,96,720,74.7C840,53,960,75,1080,96C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                        <path fill="#28365567" fill-opacity="1" d="M0,160L60,170.7C120,181,240,203,360,181.3C480,160,600,96,720,74.7C840,53,960,75,1080,96C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
                     </svg>             
                 </div>
                 <div className="main">
-                    <h1 className="title-1 text-center mt-5">Why imanage</h1>
+                    <h1 className="content text-center mt-5">Why imanage</h1>
                     <div className="three-col">
                         <div className="box animate">
                             <h2 className="title text-center">Expenses</h2>

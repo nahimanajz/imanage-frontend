@@ -7,9 +7,8 @@ export default (state = initialState, action)=>{
         case ec.EXPENSE_REGISTER_REQUEST :
             return {expenseLoading: true};
                         
-        case ec.EXPENSE_SUCCESS_REQUEST :
-            
-            return {expenseLoading: false, expenses: [...state.expenses, action.payload] };
+        case ec.EXPENSE_SUCCESS_REQUEST :            
+            return {expenseLoading: false, expenses: action.payload }; 
 
         case ec.EXPENSE_FAIL_REQUEST :
             return {expenseLoading: false, expensesError: action.payload };

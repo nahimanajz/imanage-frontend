@@ -14,6 +14,7 @@ export default (state = creditInitState, action) => {
         case cc.CREDIT_LIST_REQUEST :
             return {creditsLoading: true, credits: []};
         case cc.CREDIT_LIST_SUCCESS:
+            
             return {creditsLoading: false, credits: action.payload};
         case cc.CREDIT_LIST_FAIL:
             return {creditsLoading: false, debitsError: action.payload};

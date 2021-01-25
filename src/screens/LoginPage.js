@@ -1,20 +1,22 @@
 import React, { useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useRouteMatch} from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { login } from "../actions/UserActions";
 
 function LoginPage(props){
     const [email, setEmail ] =  useState('');
     const [password, setPassword ] = useState('');
-    
-    const redirect = props.location.search? props.location.search.split["="][1]:'/expenses';
+
+    const userSigned = useSelector( (state) => state.userLogin);
+    const {isLoading, userInfo} = userSigned;
+    const redirect = props.location.search ? props.location.search.split("=")[1]:"/expenses"; 
     const dispatch = useDispatch();
-    
+
     const submitHandler = (e)=> {
         e.preventDefault();
         dispatch(login(email, password));
     } 
-  
+    useEffect(()=> (userInfo && isLoading === false) ? props.history.push(redirect):''  , [userInfo]);
     return ( 
         <main>
             <div className="aside">            
@@ -23,7 +25,7 @@ function LoginPage(props){
             <form onSubmit={submitHandler} className="container">
             <ul className="form-container">
                 <li>
-                    <h2>Login</h2>
+                    <h2 className="text-center">Login</h2>
                 </li>
                 <li>                        
                 {/* { error && <div> { error } </div> } */}

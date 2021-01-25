@@ -5,8 +5,8 @@ import expenses from './reducers/ExpenseReducers';
 import debits from './reducers/DebitReducer';
 import credits from './reducers/CreditReducer';
 
-const userInfo = JSON.parse(localStorage.getItem('user'));
-const initialState = { expenses: [] };
+//const userInfo = JSON.parse(localStorage.getItem('user'));
+const initialState = { };
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const reducer = combineReducers({

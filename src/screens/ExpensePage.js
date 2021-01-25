@@ -5,6 +5,7 @@ import {saveExpense, getExpenses} from '../actions/ExpenseActions';
 import { headers, userInfo, user_id } from "../helpers/userInfo";
 import moment from "moment";
 import { FaWindowClose } from 'react-icons/fa';
+import { Loading } from "../helpers/Loading";
 
 
 function ExpensePage(props) {
@@ -20,11 +21,12 @@ function ExpensePage(props) {
      e.preventDefault();     
      dispatch(saveExpense(amount, category, user_id));
     }
-    useEffect(()=>  {      
-        dispatch(getExpenses());
-    } , []);
-    console.log(allExpenses);
+    useEffect(()=> dispatch(getExpenses()), []); 
     let count = 0;
+
+    if(loading) {
+        return  <Loading />
+    }
     return (
         <main>
             <ul className="aside sidemenu white-box">
@@ -33,7 +35,6 @@ function ExpensePage(props) {
                 {/* <li> New expense category</li>             */}                
             </ul>
             <ul className="container">
-                {loading && <div>Still loading</div>}
                 {error && <div>{error}</div> }               
                   
                     <table className="f-w white-box mr-3 purple">

@@ -5,6 +5,7 @@ import { listCredits, saveCreditPayment } from '../actions/CreditActions';
 import{openModal, closeModal, openPayModal, formatDate, payedAmount} from '../helpers/popups';
 import { CreditForm } from '../components/CreditForm';
 import Pagination from '../components/Pagination';
+import { Loading } from '../helpers/Loading';
 
 function CreditPage(props) {
     
@@ -15,7 +16,7 @@ function CreditPage(props) {
     const [creditsPerPage] = useState(1);
 
     const allCredits = useSelector((state) => state.credits);
-    const { credits } = allCredits;
+    const { credits, creditsLoading } = allCredits;
     const dispatch = useDispatch();
     const getCreditId = (credit) => openPayModal()? setCreditId(credit.id) : openPayModal(); 
     
@@ -39,6 +40,9 @@ function CreditPage(props) {
         const currentCredit = credits.slice(indexOfFirstCredit, indexOfLastCredit);
 
         const paginate = pageNumber => setCurrentPage(pageNumber);
+        if(creditsLoading) {
+            return  <Loading />
+        }
         
     return (
         <main>
