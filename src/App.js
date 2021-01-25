@@ -43,7 +43,7 @@ function App(props) {
                   Developed By <a href="janvierdev.netlify.app"> 	&#169; Janvier</a>
               </footer>
           </div>        
-            <Route path="/homepage" component={HomePage} />
+            <Route path="/homepage" component={HomePage} exact="true"/>
             <Route path="/register" component={RegisterPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/debits" component={DebitPage} />
