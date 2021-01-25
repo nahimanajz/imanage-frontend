@@ -8,7 +8,8 @@
   .bg-secondary { background: #ecdfd0;}
   .yellow {background: #fcc25a;}
   .purple {background: #fafafa;}
-  .red {background: #ffe2d2;}
+  .warning {background: #ffe2d2;}
+  .text-link {color: #fcc25a; font-weight: bold; font-size: large;}
   .f-h{min-height: 100%;}
   .f-w{min-width: 100%;}
   .img64x64 {height: 512px; width: 512px;}
@@ -19,8 +20,10 @@
   .mt-3 {margin-top:16px;}
   .mt-5 {margin-top:64px;}
   .title-1 { text-shadow: 4px 4px #666; font-family: fantasy; }
+  .title {  font-size: 22px; }
   .logo, .menu-item { /* text-shadow: 0 2px 2px #E5E5E5; */ color: #fafafa;  font-size: 32px;}
   .glass {backdrop-filter: blur(5px); background: rgba(0, 0, 0, 0.75);}
+  .flex-inline {display: flex; flex-direction: row; justify-content: space-around;}
   
   body,html{
       margin: 0;
@@ -94,14 +97,13 @@
   ol { list-style-type: none;}
   .wave {
      position: absolute;
-  
      width: 100%;
-   
   }
-  .header {
-      position: sticky;
+  .fix-header {
+      position: fixed;
       top: 0;
       left: 0;
+      max-height: fit-content;
   }
   .sidebar {
       width: 300px;
@@ -122,9 +124,16 @@
   }
   /* create account  */
   /* Form */
-  main {display: flex; flex: auto; flex-direction: row; flex-wrap: wrap; margin: 0 16px;}
+  main {display: flex; flex: auto; flex-direction: row; flex-wrap: wrap; margin: 0 16px;;}
   .aside { flex: 0 1 200px;}
   .container {flex: 2;}
+  form.container {
+    left: 50%;
+    top: 50%;
+    max-width: 600px;
+    max-height: 400px;
+    text-transform: uppercase;
+  }
   .footer {
     position: fixed;
     top: 90%;
@@ -137,7 +146,9 @@
   
   .form-container {
    border: solid #cccccc;
-   padding: 32px;
+   padding: 0 32px;
+   background: white;
+   border-radius: 16px;
   }
   .form-container li {
     display: flex;
@@ -254,6 +265,7 @@
       .header{flex-direction: column;}
       .menu-item{flex-direction: column;} 
       .modal {position: absolute;}
+      .aside { flex: 1 1 100%;}
     
   }
   

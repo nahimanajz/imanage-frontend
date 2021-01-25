@@ -1,29 +1,31 @@
 import React, { useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useRouteMatch} from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { login } from "../actions/UserActions";
 
 function LoginPage(props){
     const [email, setEmail ] =  useState('');
     const [password, setPassword ] = useState('');
-    
-    const redirect = props.location.search? props.location.search.split["="][1]:'/expenses';
+
+    const userSigned = useSelector( (state) => state.userLogin);
+    const {isLoading, userInfo} = userSigned;
+    const redirect = props.location.search ? props.location.search.split("=")[1]:"/expenses"; 
     const dispatch = useDispatch();
-    
+
     const submitHandler = (e)=> {
         e.preventDefault();
         dispatch(login(email, password));
     } 
-  
+    useEffect(()=> (userInfo && isLoading === false) ? props.history.push(redirect):''  , [userInfo]);
     return ( 
         <main>
             <div className="aside">            
-                <img src="../images/loginImage.jpg" alt="login image" className="img64x64"/>             
+                           
             </div>
             <form onSubmit={submitHandler} className="container">
             <ul className="form-container">
                 <li>
-                    <h2>Login</h2>
+                    <h2 className="text-center">Login</h2>
                 </li>
                 <li>                        
                 {/* { error && <div> { error } </div> } */}
@@ -40,11 +42,11 @@ function LoginPage(props){
                 <li>
                     <button className="button primary" type="submit"> Sign in</button>
                 </li>
-                <li> New to iManage? </li>
-                <li>
-                    <Link to='/register'>
-                        Signup
-                    </Link>
+                <li>                
+                    <div className="flex-inline">
+                        <label>New to iManage?</label> 
+                        <label><Link to='/register' className="text-link">   Sign up </Link></label>
+                    </div>
                 </li>
             </ul>
         </form>

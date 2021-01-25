@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listDebits, saveDebit, saveDebitPayment } from '../actions/DebitActions';
 import {user_id} from "../helpers/userInfo"
 import{openModal, closeModal, openPayModal, formatDate, payedAmount} from '../helpers/popups';
-import { Loading } from '../helpers/popover';
+import { Loading } from '../helpers/Loading';
 import { FaWindowClose } from 'react-icons/fa';
 
 
@@ -28,18 +28,17 @@ function DebitPage(props) {
  
     const handlerDebitPay = (e) => {
         e.preventDefault();
-        const debit = {
-            debit_id: debitId,
-            amount: amoutToPay
-        };
+        const debit = { debit_id: debitId, amount: amoutToPay };
         dispatch(saveDebitPayment(debit));
     }
-    useEffect(()=>{
-        dispatch(listDebits());
-
-    }, []);
+    useEffect(()=> dispatch(listDebits()), []);
 
     let count = 0;
+    if(debitsLoading) {
+        return (
+            <Loading />
+        )
+    }
     return (
         <main>
             <ul className="aside sidemenu white-box">
@@ -63,7 +62,7 @@ function DebitPage(props) {
                         </tr>
                     </thead>
                     <tbody>
-                    {debitsLoading && <Loading />}
+                    
                     { debits && debits.length > 0 &&
                         debits.map(debit => {
                             return (

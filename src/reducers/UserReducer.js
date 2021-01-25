@@ -11,14 +11,14 @@ const userRegister = (state = {}, action) => {
             return state;  
     }
 } 
-const userLogin =(state= {}, action)=> {
+const userLogin = (state = {}, action)=> {
     switch(action.type) {
         case uc.USER_LOGIN_REQUEST:
-            return {loading: true};
+            return {isLoading: true };
         case uc.USER_LOGIN_SUCCESS:
-            return {loading:false, userInfo: action.payload};
+            return {isLoading:false, userInfo: action.payload};
         case uc.USER_LOGIN_FAIL:
-            return {loading: false, error: action.payload};
+            return {isLoading: false, error: action.payload};
         default:
             return state;
     }

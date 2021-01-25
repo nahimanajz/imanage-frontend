@@ -8,24 +8,21 @@ import LoginPage from "./screens/LoginPage";
 import DebitPage from "./screens/DebitPage";
 import ExpensePage from "./screens/ExpensePage";
  
-import { BrowserRouter, Link,Route } from "react-router-dom";
+import { BrowserRouter, Link,Route, useHistory } from "react-router-dom";
 import CreditPage from "./screens/CreditPage";
 import { userInfo } from "./helpers/userInfo";
 import { connect } from "react-redux";
 import Menu from "./components/Menu";
-import { FaUserCircle, FaWindowClose } from 'react-icons/fa';
-
-
-
-const openSidebar = () => {
-  document.querySelector('.sidebar').classList.toggle('open');
-}
-const closeSidebar =()=> {
-  document.querySelector('.sidebar').classList.remove('open');
-}
+import {FaWindowClose } from 'react-icons/fa';
+import {toggleSidebar} from './helpers/popups'
 toast.configure();
 
-function App() {
+function App(props) {
+  //const history = useHistory();
+  const handleLogout = () => {
+    localStorage.clear('userInfo');
+    document.location.href= "/homepage";
+  }
   return (
     <BrowserRouter>
         <div>
@@ -33,19 +30,18 @@ function App() {
                     <ul className="logo">                
                       <Link to="/homepage" className="menu">iManage</Link>                   
                     </ul>                             
-                       <Menu />                                  
-                    <ul className="menu-item">
-                       {/* {userInfo()['user'].balance && <FaUserCircle onClick={openSidebar}/> } */}
-                      
-                    </ul>  
+                      <Menu />                                 
               </div>             
               <aside className="sidebar">                  
-                  <FaWindowClose onClick={closeSidebar} size={32}/>                  
+                  <FaWindowClose onClick={toggleSidebar} size={32}/>  
+                  <ul className="menu-item">
+                    <li className="menu" onClick={handleLogout}> logout</li>
+                  </ul>                
               </aside>
               
-              <div className="footer bg-primary">
+              <footer className="footer bg-primary">
                   Developed By <a href="janvierdev.netlify.app"> 	&#169; Janvier</a>
-              </div>
+              </footer>
           </div>        
             <Route path="/homepage" component={HomePage} />
             <Route path="/register" component={RegisterPage} />

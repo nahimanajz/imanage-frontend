@@ -12,7 +12,7 @@ try {
     dispatch({type: ec.EXPENSE_SUCCESS_REQUEST, payload: data.expense});
    
     console.log(JSON.stringify(data.message));
-    toast.error(data.message);
+    toast.success(data.message);
 } catch (error) {
     console.error(error);
     dispatch({type: ec.EXPENSE_FAIL_REQUEST, payload: error.message});
