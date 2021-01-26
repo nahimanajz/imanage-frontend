@@ -4,19 +4,16 @@ import * as ec from '../constants/ExpenseConstants';
 import { headers, user_id} from '../helpers/userInfo';
 import { toast } from 'react-toastify';
 
-const saveExpense = (amount,  category, user_id ) => async(dispatch) => {
-dispatch({type: ec.EXPENSE_REGISTER_REQUEST, payload:{ amount,  category, user_id}});
+const saveExpense = (amount,  category, user_id, description) => async(dispatch) => {
+dispatch({type: ec.EXPENSE_REGISTER_REQUEST, payload:{ amount,  category, description, user_id, description}});
 try {
-    const { data } = await axios.post(route.URL_INDEX+"/expenses", {amount, category, user_id}, { headers: headers});
-   
+    const { data } = await axios.post(route.URL_INDEX+"/expenses", {amount, category, user_id, description}, { headers: headers});    
     dispatch({type: ec.EXPENSE_SUCCESS_REQUEST, payload: data.expense});
-   
-    console.log(JSON.stringify(data.message));
+    
     toast.success(data.message);
 } catch (error) {
-    console.error(error);
     dispatch({type: ec.EXPENSE_FAIL_REQUEST, payload: error.message});
-    toast.error(error.message);
+     toast.error(error.message);
 }
 }
 const getExpenses = () => async (dispatch) => {

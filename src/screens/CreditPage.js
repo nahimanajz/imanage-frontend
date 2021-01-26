@@ -37,11 +37,11 @@ function CreditPage(props) {
         let count=0;
 
         //pagingation 
-        const indexOfLastCredit = currentPage * creditsPerPage ;
-        const indexOfFirstCredit = indexOfLastCredit - creditsPerPage;
-        const currentCredit = credits.slice(indexOfFirstCredit, indexOfLastCredit);
+        // const indexOfLastCredit = currentPage * creditsPerPage ;
+        // const indexOfFirstCredit = indexOfLastCredit - creditsPerPage;
+        // const currentCredit = credits.slice(indexOfFirstCredit, indexOfLastCredit);
 
-        const paginate = pageNumber => setCurrentPage(pageNumber);
+        // const paginate = pageNumber => setCurrentPage(pageNumber);
         if(creditsLoading) {
             return  <Loading />
         }
@@ -54,7 +54,8 @@ function CreditPage(props) {
                 {/* <li> New expense category</li>             */}                
             </ul>
             <ul className="container mr-3">
-                <table className="f-w white-box">
+                <table className="f-w white-box" id="example">
+
                     <tr>
                         <th>No</th>
                         <th>Creditor</th>
@@ -66,7 +67,7 @@ function CreditPage(props) {
                     </tr>
                     <tbody>                      
                     { credits && credits.length > 0 &&
-                        currentCredit.map(credit => {
+                        credits.map(credit => {
                             return (
                                 <tr key={credit.id}>
                                     <td> {++count} </td>
@@ -82,11 +83,11 @@ function CreditPage(props) {
                     }             
                     </tbody>
                 </table>
-                <Pagination 
+                {/* <Pagination 
                      creditsPerCredit ={ creditsPerPage }
                      totalCredits = {credits.length} 
                      paginate={ paginate }
-                />
+                /> */}
 
             </ul>
             <CreditForm />
