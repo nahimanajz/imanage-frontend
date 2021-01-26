@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listDebits, saveDebit, saveDebitPayment } from '../actions/DebitActions';
 import {user_id} from "../helpers/userInfo"
-import{openModal, closeModal, openPayModal, formatDate, payedAmount} from '../helpers/popups';
+import{openModal, closeModal, togglePayModal, formatDate, payedAmount, closePayModal} from '../helpers/popups';
+
 import { Loading } from '../helpers/Loading';
 import { FaWindowClose } from 'react-icons/fa';
 
@@ -24,9 +25,10 @@ function DebitPage(props) {
         const data = { debitor, phone, timeToPay:formatDate(timeToPay), amount, user_id };
         dispatch(saveDebit(data));
     };
-    const getDebitId = (debit) => openPayModal()? setDebitId(debit.id) : openPayModal(); 
+    const getDebitId = (debit) => togglePayModal()? setDebitId(debit.id) : togglePayModal(); 
  
-    const handlerDebitPay = (e) => {
+    const handlerDebitPay = (e) => { 
+        closePayModal();
         e.preventDefault();
         const debit = { debit_id: debitId, amount: amoutToPay };
         dispatch(saveDebitPayment(debit));

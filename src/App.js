@@ -8,17 +8,16 @@ import LoginPage from "./screens/LoginPage";
 import DebitPage from "./screens/DebitPage";
 import ExpensePage from "./screens/ExpensePage";
  
-import { BrowserRouter, Link,Route, useHistory } from "react-router-dom";
+import { BrowserRouter, Link, Route } from "react-router-dom";
 import CreditPage from "./screens/CreditPage";
-import { userInfo } from "./helpers/userInfo";
-import { connect } from "react-redux";
 import Menu from "./components/Menu";
 import {FaWindowClose } from 'react-icons/fa';
-import {toggleSidebar} from './helpers/popups'
+import { toggleSidebar } from './helpers/popups';
+import { FixHeader } from "./components/FixHeader";
 toast.configure();
-
+FixHeader();
 function App(props) {
-  //const history = useHistory();
+
   const handleLogout = () => {
     localStorage.clear('userInfo');
     document.location.href= "/homepage";
