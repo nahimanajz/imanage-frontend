@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listCredits, saveCreditPayment } from '../actions/CreditActions';
 
-import{openModal, closeModal, openPayModal, formatDate, payedAmount} from '../helpers/popups';
+import{openModal, closeModal, togglePayModal, formatDate, payedAmount, closePayModal} from '../helpers/popups';
+
 import { CreditForm } from '../components/CreditForm';
 import Pagination from '../components/Pagination';
 import { Loading } from '../helpers/Loading';
@@ -18,9 +19,10 @@ function CreditPage(props) {
     const allCredits = useSelector((state) => state.credits);
     const { credits, creditsLoading } = allCredits;
     const dispatch = useDispatch();
-    const getCreditId = (credit) => openPayModal()? setCreditId(credit.id) : openPayModal(); 
+    const getCreditId = (credit) => togglePayModal()? setCreditId(credit.id) : togglePayModal(); 
     
     const handlerCreditPay = (e) => {
+        closePayModal();            
             e.preventDefault();
             const credit = {
                 credit_id: credit_id,

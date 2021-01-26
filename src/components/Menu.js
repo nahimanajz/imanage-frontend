@@ -14,7 +14,7 @@ const Menu = () => {
             <li> <Link to="expenses" class="menu"> Expense </Link>  </li> 
         </ul>
         <ul className="menu-item">
-             <Link to="expenses" class="menu"> <VscAccount onClick={toggleSidebar}/> </Link>  {/** here for signout */}
+            <li> <Link to="expenses"> <VscAccount onClick={toggleSidebar} className="menu"/> </Link> </li>
         </ul>
         </>
       )
@@ -25,8 +25,9 @@ const Menu = () => {
                 <li> <Link to="/register" class="menu"> Join</Link>   </li>
             </ul>
             <ul className="menu-item"> {/** for signin */}
-            <Link to="login" class="menu"> <AiOutlineLogin height='320px'/> </Link>  {/** here for signout */}
-
+            <li>
+                 <Link to="login" class="menu"> <AiOutlineLogin/> </Link>  {/** here for signout */}
+            </li>
             </ul>
             </>
         )
