@@ -51,7 +51,7 @@ function DebitPage(props) {
             <ul className="container">               
                 
                 {debitsError && <div>{debitsError}</div>}
-                <table className="f-w white-box mr-3">
+                <table className="f-w white-box" id="example">
                     <thead>
                         <tr>
                             <th>No</th>

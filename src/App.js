@@ -14,8 +14,17 @@ import Menu from "./components/Menu";
 import {FaWindowClose } from 'react-icons/fa';
 import { toggleSidebar } from './helpers/popups';
 import { FixHeader } from "./components/FixHeader";
+
+import "datatables.net-dt/js/dataTables.dataTables";
+import 'jquery/dist/jquery.min.js';
+import $ from 'jquery';
+
 toast.configure();
 FixHeader();
+
+$(document).ready(function () {
+  $('table').DataTable();
+});
 function App(props) {
 
   const handleLogout = () => {

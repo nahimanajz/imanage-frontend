@@ -7,7 +7,8 @@ export default (state = creditInitState, action) => {
         // case cc.DEBIT_SAVE_REQUEST:            
         //     return {isLoading:true};
         case cc.CREDIT_SAVE_SUCCESS:
-            return {isLoading: false, credits: [...state.credits, action.payload]};
+           
+            return {isLoading: false, credits: [...state.credits, action.payload.Credit]};
         case cc.CREDIT_SAVE_FAIL:
             return {isLoading: false, error: action.payload};
         
@@ -22,7 +23,8 @@ export default (state = creditInitState, action) => {
         case cc.CREDIT_PAY_REQUEST :
             return {isPayLoading: true, credits: []};
         case cc.CREDIT_PAY_SUCCESS:
-            return {isPayLoading: false, credits: action.payload};
+            console.log([...state.credits, action.payload]);
+            return {isPayLoading: false, credits: [...state.credits, action.payload]}; /** state credits does not reload */
         case cc.CREDIT_PAY_FAIL:
             return {isPayLoading: false, payError: action.payload};    
         default:
