@@ -16,7 +16,7 @@ function LoginPage(props){
         e.preventDefault();
         dispatch(login(email, password));
     } 
-    useEffect(()=> (userInfo && isLoading === false) ? props.history.push(redirect):''  , [userInfo]);
+    // useEffect(()=> (userInfo && isLoading === false) ? props.history.push(redirect):''  , [userInfo]);
     return ( 
         <main>
             <div className="aside">            
