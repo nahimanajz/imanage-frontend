@@ -6,17 +6,12 @@ import { login } from "../actions/UserActions";
 function LoginPage(props){
     const [email, setEmail ] =  useState('');
     const [password, setPassword ] = useState('');
-
-    const userSigned = useSelector( (state) => state.userLogin);
-    const {isLoading, userInfo} = userSigned;
-    const redirect = props.location.search ? props.location.search.split("=")[1]:"/expenses"; 
     const dispatch = useDispatch();
-
     const submitHandler = (e)=> {
         e.preventDefault();
         dispatch(login(email, password));
     } 
-    useEffect(()=> (userInfo && isLoading === false) ? props.history.push(redirect):''  , [userInfo]);
+   
     return ( 
         <main>
             <div className="aside">            

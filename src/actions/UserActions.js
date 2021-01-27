@@ -26,6 +26,7 @@ const login = (email, password) => async(dispatch) => {
          localStorage.setItem('user', JSON.stringify(data.user));      
        
          dispatch({type:uc.USER_LOGIN_SUCCESS, payload: data.user});
+         window.location.assign("/expenses");
         }
     }catch(error){
         toast.error(error.message);
