@@ -14,7 +14,7 @@ function CreditPage(props) {
     const [amoutToPay, setAmountToPay] = useState(1);
 
     const [currentPage, setCurrentPage] =  useState(1);
-    const [creditsPerPage] = useState(1);
+    const [creditsPerPage] = useState(10);
 
     const allCredits = useSelector((state) => state.credits);
     const { credits, creditsLoading } = allCredits;

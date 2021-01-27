@@ -10,6 +10,7 @@ const register = (name, email, phone, balance, password, password_confirmation) 
     try{
        const {data} = await axios.post(route.URL_INDEX+"/users",{name, email, phone, balance, password, password_confirmation});       
        const errors = Object.entries(data.message); 
+       
       return message(data, errors);         
     } catch(error){       
         dispatch({type: uc.USER_REGISTER_FAIL, payload: error.message});
@@ -22,9 +23,7 @@ const login = (email, password) => async(dispatch) => {
         if(data.error){
             toast.error(data.message);
         }else {
-         localStorage.setItem('userInfo', JSON.stringify(data));   
-         localStorage.setItem('user', JSON.stringify(data.user));      
-       
+         localStorage.setItem('userInfo', JSON.stringify(data));             
          dispatch({type:uc.USER_LOGIN_SUCCESS, payload: data.user});
          window.location.assign("/expenses");
         }

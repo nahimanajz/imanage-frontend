@@ -12,8 +12,8 @@ import { Datatable } from "../helpers/datatable";
 function ExpensePage(props) {
     const [amount, setAmount] = useState('');
     const [category, setCategory] = useState('');
-    const [description] =useState("DUMMY DESCRIPTION")
-    const [query, setQuery] = useState('');
+    const [description] = useState("DUMMY DESCRIPTION")
+    const [query, setQuery] = useState(''); 
 
     const allExpenses = useSelector(state => state.expenses);
     const {loading, error, expenses, expenseLoading, expensesError } = allExpenses;
@@ -24,9 +24,9 @@ function ExpensePage(props) {
      e.preventDefault();     
      dispatch(saveExpense(amount, category,user_id, description));
     }
-    useEffect(()=> dispatch(getExpenses()), []); 
+    useEffect(() => dispatch(getExpenses()), []); 
     let count = 0;
-
+    console.log(expenses);
     if(loading) {
         return  <Loading />
     }

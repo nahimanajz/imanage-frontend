@@ -5,10 +5,10 @@ import { headers, user_id} from '../helpers/userInfo';
 import { toast } from 'react-toastify';
 
 const saveExpense = (amount,  category, user_id, description) => async(dispatch) => {
-dispatch({type: ec.EXPENSE_REGISTER_REQUEST, payload:{ amount,  category, description, user_id, description}});
+//dispatch({ type: ec.EXPENSE_REGISTER_REQUEST, payload:{ amount,  category, description, user_id, description } } );
 try {
-    const { data } = await axios.post(route.URL_INDEX+"/expenses", {amount, category, user_id, description}, { headers: headers});    
-    dispatch({type: ec.EXPENSE_SUCCESS_REQUEST, payload: data.expense});
+    const { data} = await axios.post(`${route.URL_INDEX}/expenses`, { amount, category, user_id, description }, { headers: headers});    
+    dispatch({ type: ec.EXPENSE_SUCCESS_REQUEST, payload: data.expense });
     
     toast.success(data.message);
 } catch (error) {
@@ -19,7 +19,7 @@ try {
 const getExpenses = () => async (dispatch) => {
     dispatch({type: ec.FECTCH_EXPENSES_REQUEST});
     try {
-        const { data } = await axios.get(route.URL_INDEX+"/expenses", { headers: headers });   
+        const { data } = await axios.get(`${route.URL_INDEX}/expenses`, { headers: headers });   
         dispatch({type:ec.FECTCH_EXPENSES_SUCCESS, payload: data});      
         
     } catch (error) {

@@ -13,8 +13,8 @@ const saveCredit = (creditData) =>async(dispatch)=> {
         dispatch({type: cc.CREDIT_SAVE_SUCCESS, payload: data});      
         toast.success(data.message);
     } catch (error) {
-        dispatch({type: cc.CREDIT_SAVE_FAIL, payload: error.message});
-        toast.error(error.message);
+        dispatch({type: cc.CREDIT_SAVE_FAIL, payload: error.message }); 
+        toast.error("message"+error.response.status);
     }
 }
 const listCredits = () => async(dispatch) =>{
