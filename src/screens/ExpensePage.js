@@ -26,7 +26,6 @@ function ExpensePage(props) {
     }
     useEffect(() => dispatch(getExpenses()), []); 
     let count = 0;
-    console.log(expenses);
     if(loading) {
         return  <Loading />
     }
