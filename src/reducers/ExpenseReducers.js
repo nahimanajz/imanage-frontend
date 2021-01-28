@@ -13,9 +13,6 @@ export default (state = initialExpenses, action) => {
         case ec.FECTCH_EXPENSES_FAIL:
             return {loading: false, error: action.payload};
 
-        case ec.EXPENSE_REGISTER_REQUEST :
-            return { expenseLoading: true };  
-
         case ec.EXPENSE_SUCCESS_REQUEST :
             console.log("data from reducer", action.payload);
               

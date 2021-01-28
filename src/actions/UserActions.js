@@ -5,13 +5,13 @@ import * as route from '../serverRoutes';
 import { toast } from 'react-toastify';
 import { message } from '../helpers/popups';
 
-const register = (name, email, phone, balance, password, password_confirmation) =>async(dispatch)=>{
-    dispatch({type: uc.USER_REGISTER_REQUEST, payload:{name, email, phone, balance, password, password_confirmation} });
+const saveUser = ( userData ) =>async(dispatch)=>{
+    dispatch({type: uc.USER_REGISTER_REQUEST, payload: userData });
     try{
-       const {data} = await axios.post(route.URL_INDEX+"/users",{name, email, phone, balance, password, password_confirmation});       
-       const errors = Object.entries(data.message); 
-       
-      return message(data, errors);         
+       const {data} = await axios.post(route.URL_INDEX+"/users", userData);       
+       const errors = Object.entries(data.message);        
+      return message(data, errors);     
+          
     } catch(error){       
         dispatch({type: uc.USER_REGISTER_FAIL, payload: error.message});
     }
@@ -31,4 +31,4 @@ const login = (email, password) => async(dispatch) => {
         toast.error(error.message);
     }
 }
-export {register, login};
+export {saveUser, login};

@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {  Link} from "react-router-dom";
-import { register } from "../actions/UserActions";
+import { saveUser } from "../actions/UserActions";
+import { useForm } from 'react-hook-form';
 
 function RegisterPage(props){
     const [name, setName] = useState('');
@@ -12,10 +13,12 @@ function RegisterPage(props){
     const [password_confirmation, setPassword_confirmation] = useState('');
     //const [message, setMessage] = useState('');
 
+    const { register, handleSubmit, watch, errors } = useForm();
+
     const userRegister = useSelector(state => state.userRegister);
     const { loading, userInfo, error } = userRegister;
     const dispatch = useDispatch();
-   const redirect = props.location.search ? props.location.search.split("=")[1]:'/register';
+    const redirect = props.location.search ? props.location.search.split("=")[1]:'/register';
     useEffect(()=> {
         if(userInfo) {            
            props.history.push(redirect);
@@ -25,7 +28,9 @@ function RegisterPage(props){
     },[userInfo]) //if user state info change then useEffect() will executes it's code
     const submitHandler = (e) => {
         e.preventDefault();
-       dispatch(register(name, email, phone, balance, password, password_confirmation));
+        const data = {name, email, phone, balance, password, password_confirmation};
+        console.log(data);
+       dispatch(saveUser(data));
     } 
     return ( 
         <main>
@@ -40,15 +45,20 @@ function RegisterPage(props){
                     <li className="text-center title">Sign up </li>  
                     <li>
                         <label htmlFor="name">  name </label>                          
-                        <input type="text" name="name" id="name" onChange={(e)=> setName(e.target.value)}/>
+                        <input type="text" name="name" id="name" onChange={(e)=> setName(e.target.value)} ref={register({ required: true,min: 2 })}/>
+                        <small>{errors.name && "Name is required"}</small>
                     </li>
                     <li>
                         <label htmlFor="email">  Email </label>                          
-                        <input type="email" name="email" id="email" onChange={(e)=> setEmail(e.target.value)} />
+                        <input type="email" name="email" id="email" onChange={(e)=> setEmail(e.target.value)} ref={register({required: true, pattern: /^\S+@\S+$/i})} />
+                        <small>{errors.email && "Email is required"}</small>
+
                     </li>
                     <li>
                         <label htmlFor="phone">  Phone </label>                          
-                        <input type="text" name="phone" id="phone" onChange={(e)=> setPhone(e.target.value)} />
+                        <input type="text" name="phone" id="phone" onChange={(e)=> setPhone(e.target.value)} ref={register({min:9, max:11 })}/>
+                        <small>{errors.phone && "Phone is required"}</small>
+
                     </li>
                     <li>
                         <label htmlFor="phone">  Balance </label>                          

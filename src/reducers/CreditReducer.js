@@ -24,8 +24,7 @@ export default (state = creditInitState, action) => {
         case cc.CREDIT_PAY_REQUEST :
             return {isPayLoading: true, credits: []};
 
-        case cc.CREDIT_PAY_SUCCESS:
-            console.log([...state.credits, action.payload]);
+        case cc.CREDIT_PAY_SUCCESS:            
             return {isPayLoading: false, credits: [...state.credits, action.payload]}; /** state credits does not reload */
 
         case cc.CREDIT_PAY_FAIL:

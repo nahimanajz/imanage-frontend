@@ -7,12 +7,12 @@ const toggleSidebar = () => document.querySelector('.sidebar').classList.toggle(
 const togglePayModal = () => document.querySelector('.modal-sm').classList.toggle("active");
 const closePayModal =() => document.querySelector('.modal-sm').classList.remove("active");
 
-const message = (data, errors)=> {
-    if (errors.length >0) {           
+const message = (data, errors)=> {    
+    if (data.error === true) {           
         errors.forEach(error => {
-       return toast.warning(error[1]);            
+       return toast.error(error[1]);            
         });   
-    }else if(errors.length === 0) {
+    }else {
         toast.success(data.message);
     }   
 }
