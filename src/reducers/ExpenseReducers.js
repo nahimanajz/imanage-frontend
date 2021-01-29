@@ -22,6 +22,6 @@ export default (state = initialExpenses, action) => {
             
             return {expenseLoading: false, expensesError: action.payload };
         default: 
-            return state;
+            return state; 
     }
 }
