@@ -11,6 +11,8 @@ try {
     const errors = Object.entries(data.message);  
     if(data.error === true){
         return message(data, errors);
+    }else if( data.status === 400){
+     toast.warning(data.message);
      }else {
         dispatch({ type: ec.EXPENSE_SUCCESS_REQUEST, payload: data.expense })
          toast.success(data.message);

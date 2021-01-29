@@ -14,14 +14,16 @@ const saveCredit = (creditData) =>async(dispatch)=> {
         const errors = Object.entries(data.message);
         if(data.error === true){
            return message(data, errors);
-        }else {
+        }else if(data.status === 400){
+            toast.warning(data.message);
+        }else{
             dispatch({type: cc.CREDIT_SAVE_SUCCESS, payload: data});
             toast.success(data.message);
         }  
        
     } catch (error) {
         dispatch({type: cc.CREDIT_SAVE_FAIL, payload: error.message }); 
-        toast.error("message"+error.message);
+        toast.error("message", error.message);
     }
 }
 const listCredits = () => async(dispatch) =>{
