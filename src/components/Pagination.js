@@ -1,14 +1,20 @@
 import React from 'react';
 
-const Pagination = ({creditsPerCredit, totalCredits, paginate}) => {
+const makePages = (data, currentPage, dataPerPage) => {
+        const indexOfLastData = currentPage * dataPerPage ;
+        const indexOfFirstData = indexOfLastData - dataPerPage;
+        return data.slice(indexOfFirstData, indexOfLastData);
+    }
+
+const Pagination = ({dataPerPage, totalData, paginate}) => {
     const pageNumbers = [];
-    for (let i = 0; i < Math.ceil(totalCredits /  creditsPerCredit); i++) {
+    for (let i = 0; i < Math.ceil(totalData /  dataPerPage); i++) {
         pageNumbers.push(i);
     }
     return (        
-        <div className="f-w"> {
+        <ul className="f-w" style={{marginTop: '32px'}}> {
                pageNumbers.map(number =>(
-                   <li key={ number } className="page-item p-1"> 
+                   <li key={ number } className="page-item p-1" style={{padding: '16px'}}> 
                    <a onClick={ () => paginate(number) } className="page-links">
                        { ++number }
                        
@@ -16,8 +22,8 @@ const Pagination = ({creditsPerCredit, totalCredits, paginate}) => {
                    </li>
                ))
             }
-        </div>
+        </ul>
     )
 
 }
-export default Pagination;
+export { Pagination, makePages};

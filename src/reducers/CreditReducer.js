@@ -25,7 +25,7 @@ export default (state = creditInitState, action) => {
             return {isPayLoading: true, credits: []};
 
         case cc.CREDIT_PAY_SUCCESS:            
-            return {isPayLoading: false, credits: [...state.credits, action.payload]}; /** state credits does not reload */
+            return {isPayLoading: false, credits: state.credits}; /** state credits does not reload */
 
         case cc.CREDIT_PAY_FAIL:
             return {isPayLoading: false, payError: action.payload};    

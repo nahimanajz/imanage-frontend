@@ -236,10 +236,13 @@
    table{width: 50vh;}
   .page-item {
     color: var(--text-primary);
-    background:#b4b9e9;
+    background:#d9dbec;
     border: 1px solid #ecdfd0;
     display: inline-block;
+    color:black;
+    font-size: 24px;
   }
+ 
   .loader {
     top: 0;
     left: 0;

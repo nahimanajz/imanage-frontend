@@ -7,9 +7,10 @@ import moment from "moment";
 import { FaSearch, FaWindowClose } from 'react-icons/fa';
 import { Loading } from "../helpers/Loading";
 import { Datatable } from "../helpers/datatable";
-
-
+import {Pagination, makePages} from "../components/Pagination";
+    
 function ExpensePage(props) {
+
     const [amount, setAmount] = useState('');
     const [category, setCategory] = useState('');
     const [description] = useState("DUMMY DESCRIPTION")
@@ -26,6 +27,16 @@ function ExpensePage(props) {
     }
     useEffect(() => dispatch(getExpenses()), []); 
     let count = 0;
+    //pagination
+    const [currentPage, setCurrentPage] =  useState(1);
+    const [expensesPerPage] = useState(7);
+
+    //  const indexOfLastExpense = currentPage * expensesPerPage ;
+    //  const indexOfFirstExpense = indexOfLastExpense - expensesPerPage;
+    //  const currentExpense = expenses.slice(indexOfFirstExpense, indexOfLastExpense);
+
+     const paginate = pageNumber => setCurrentPage(pageNumber);
+
     if(loading) {
         return  <Loading />
     }
@@ -36,11 +47,11 @@ function ExpensePage(props) {
                 <li onClick={openModal}>Add expenditure</li>            
                 {/* <li> New expense category</li>             */}                
             </ul>
-            <ul className="container">              
+            <ul className="container white-box">              
               
                { error && <div>{error}</div> }               
                   
-                    <table className="f-w white-box" id="example">
+                    <table className="f-w example" id="example">
                         <tr>
                             <th>No</th>
                             <th>Date</th>
@@ -51,7 +62,7 @@ function ExpensePage(props) {
                         <tbody>
                             
                         {  expenses && expenses.length > 0 &&                 
-                            expenses.map(expense => {
+                            makePages(expenses, currentPage, expensesPerPage).map(expense => {
                             return (
                                 <tr key={expense.id}>
                                     <td> {++count} </td>
@@ -64,8 +75,12 @@ function ExpensePage(props) {
                             })  
                             }                        
                         </tbody>
-                </table>
-              
+                    </table>
+                <Pagination 
+                    dataPerPage ={ expensesPerPage }
+                    totalData = {expenses.length} 
+                    paginate={ paginate }                    
+                />    
             </ul>
             <div className="modal-bg">
                 <div className="modal white-box">
