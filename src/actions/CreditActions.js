@@ -37,7 +37,7 @@ const listCredits = () => async(dispatch) =>{
 }
 const saveCreditPayment = (paymentData) => async(dispatch) =>{
       
-    dispatch({type: cc.CREDIT_PAY_REQUEST});
+    //dispatch({type: cc.CREDIT_PAY_REQUEST});
     try {
         const { data } = await axios.post(route.URL_INDEX+"/pay/credit", paymentData, {headers:headers});
         dispatch({type:cc.CREDIT_PAY_SUCCESS, payload: data});
@@ -45,7 +45,7 @@ const saveCreditPayment = (paymentData) => async(dispatch) =>{
     } catch (error) {
         dispatch({type:cc.CREDIT_PAY_FAIL, payload: error.message});
         toast.error(error.message);
-        console.log(error.message);
+        
     }
 }
 

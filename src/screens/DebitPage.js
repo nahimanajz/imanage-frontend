@@ -6,6 +6,7 @@ import{openModal, closeModal, togglePayModal, formatDate, payedAmount, closePayM
 
 import { Loading } from '../helpers/Loading';
 import { FaWindowClose } from 'react-icons/fa';
+import {Pagination, makePages } from '../components/Pagination';
 
 
 function DebitPage(props) {
@@ -36,6 +37,21 @@ function DebitPage(props) {
     useEffect(()=> dispatch(listDebits()), []);
 
     let count = 0;
+     // pagingation
+     function pagination(){
+
+     }
+    const [currentPage, setCurrentPage] =  useState(1);
+    const [debitsPerPage] = useState(7);
+
+    //  const indexOfLastDebit = currentPage * debitsPerPage ;
+    //  const indexOfFirstDebit = indexOfLastDebit - debitsPerPage;
+    //  const someDebits =debits;
+    //  const currentDebits = someDebits.slice(indexOfFirstDebit, indexOfLastDebit);
+
+     const paginate = pageNumber => setCurrentPage(pageNumber);
+            
+
     if(debitsLoading) {
         return (
             <Loading />
@@ -48,10 +64,10 @@ function DebitPage(props) {
                 <li onClick={openModal}>Add debits</li>            
                 {/* <li> New expense category</li>             */}                
             </ul>
-            <ul className="container">               
+            <ul className="container white-box">               
                 
                 {debitsError && <div>{debitsError}</div>}
-                <table className="f-w white-box" id="example">
+                <table className="f-w" id="example">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -66,7 +82,7 @@ function DebitPage(props) {
                     <tbody>
                     
                     { debits && debits.length > 0 &&
-                        debits.map(debit => {
+                        makePages(debits, currentPage, debitsPerPage).map(debit => {
                             return (
                                 <tr key={debit.id}>
                                     <td>{++count}</td>
@@ -83,6 +99,12 @@ function DebitPage(props) {
                                             
                     </tbody>
                 </table>
+
+                <Pagination 
+                  dataPerPage ={ debitsPerPage }
+                  totalData = {debits.length} 
+                  paginate={ paginate }                    
+                />
             </ul>
             <div className="modal-bg">
                 <div className="modal white-box">

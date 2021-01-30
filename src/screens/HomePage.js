@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { userInfo } from "../helpers/userInfo";
 
+
 function HomePage(){
-  
     return (<div className="main">
                 <div className="home-image">
                     <div className="content">

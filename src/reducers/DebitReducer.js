@@ -13,17 +13,22 @@ export default (state = debitInitState, action) => {
         
         case dc.DEBITS_LIST_REQUEST :
             return {debitsLoading: true, debits: []};
+            
         case dc.DEBITS_LIST_SUCCESS:
             return {debitsLoading: false, debits: action.payload};
+
         case dc.DEBITS_LIST_FAIL:
             return {debitsLoading: false, debitsError: action.payload};
 
         case dc.DEBIT_PAY_REQUEST :
             return {isPayLoading: true, debits: []};
+
         case dc.DEBIT_PAY_SUCCESS:
-            return {isPayLoading: false, debits: action.payload};
+            return {isPayLoading: false, debits: state.debits};
+
         case dc.DEBIT_PAY_FAIL:
-            return {isPayLoading: false, payError: action.payload};    
+            return {isPayLoading: false, payError: action.payload};
+
         default:
             return state;
 

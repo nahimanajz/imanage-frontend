@@ -5,16 +5,13 @@ import { listCredits, saveCreditPayment } from '../actions/CreditActions';
 import{openModal, closeModal, togglePayModal, formatDate, payedAmount, closePayModal} from '../helpers/popups';
 
 import { CreditForm } from '../components/CreditForm';
-import Pagination from '../components/Pagination';
+import {Pagination, makePages} from '../components/Pagination';
 import { Loading } from '../helpers/Loading';
 
 function CreditPage(props) {
     
     const [credit_id, setCreditId] = useState(0);
-    const [amoutToPay, setAmountToPay] = useState(1);
-
-    const [currentPage, setCurrentPage] =  useState(1);
-    const [creditsPerPage] = useState(10);
+    const [amoutToPay, setAmountToPay] = useState(1);    
 
     const allCredits = useSelector((state) => state.credits);
     const { credits, creditsLoading } = allCredits;
@@ -36,12 +33,11 @@ function CreditPage(props) {
         }, []);
         let count=0;
 
-        //pagingation 
-        // const indexOfLastCredit = currentPage * creditsPerPage ;
-        // const indexOfFirstCredit = indexOfLastCredit - creditsPerPage;
-        // const currentCredit = credits.slice(indexOfFirstCredit, indexOfLastCredit);
+        // pagingation 
+        const [currentPage, setCurrentPage] =  useState(1);
+        const [creditsPerPage] = useState(7);
 
-        // const paginate = pageNumber => setCurrentPage(pageNumber);
+        const paginate = pageNumber => setCurrentPage(pageNumber);
         if(creditsLoading) {
             return  <Loading />
         }
@@ -53,9 +49,8 @@ function CreditPage(props) {
                 <li onClick={openModal}>Add Credits</li>            
                 {/* <li> New expense category</li>             */}                
             </ul>
-            <ul className="container mr-3">
-                <table className="f-w white-box" id="example">
-
+            <ul className="container mr-3 white-box">
+                <table className="f-w" id="example">
                     <tr>
                         <th>No</th>
                         <th>Creditor</th>
@@ -67,7 +62,7 @@ function CreditPage(props) {
                     </tr>
                     <tbody>                      
                     { credits && credits.length > 0 &&
-                        credits.map(credit => {
+                        makePages(credits, currentPage, creditsPerPage).map(credit => {
                             return (
                                 <tr key={credit.id}>
                                     <td> {++count} </td>
@@ -83,13 +78,15 @@ function CreditPage(props) {
                     }             
                     </tbody>
                 </table>
-                {/* <Pagination 
-                     creditsPerCredit ={ creditsPerPage }
-                     totalCredits = {credits.length} 
-                     paginate={ paginate }
-                /> */}
-
+                <Pagination 
+                     dataPerPage ={ creditsPerPage }
+                     totalData = {credits.length} 
+                     paginate={ paginate }                    
+                />
             </ul>
+           
+            
+            
             <CreditForm />
             <div className="modal-sm">
             <div className="modal-content">

@@ -34,7 +34,7 @@ const listDebits = () => async(dispatch) =>{
 }
 const saveDebitPayment = (paymentData) => async(dispatch) =>{
       
-    dispatch({type: dc.DEBIT_PAY_REQUEST});
+    //dispatch({type: dc.DEBIT_PAY_REQUEST});
     try {
         const { data } = await axios.post(`${route.URL_INDEX}/pay/debit`, paymentData, {headers:headers});
         dispatch({type:dc.DEBIT_PAY_SUCCESS, payload: data});
