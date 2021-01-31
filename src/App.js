@@ -14,6 +14,7 @@ import Menu from "./components/Menu";
 import {FaWindowClose } from 'react-icons/fa';
 import { toggleSidebar } from './helpers/popups';
 import { FixHeader } from "./components/FixHeader";
+import DepositPage from "./screens/DepositPage";
 
 
 
@@ -52,6 +53,7 @@ function App(props) {
             <Route path="/debits" component={DebitPage} />
             <Route path="/credits" component={CreditPage} />
             <Route path="/expenses" component={ExpensePage} />
+            <Route path="/income" component={DepositPage} />
               
     </BrowserRouter>   
   );

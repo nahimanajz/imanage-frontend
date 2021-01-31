@@ -12,6 +12,7 @@ const Menu = () => {
             <li> <Link to="credits" class="menu"> Credits </Link> </li>  
             <li> <Link to="debits" class="menu"> Debits </Link>  </li>
             <li> <Link to="expenses" class="menu"> Expense </Link>  </li> 
+            <li> <Link to="Income" class="menu"> Income </Link>  </li> 
         </ul>
         <ul className="menu-item">
             <li> <Link to="expenses"> <VscAccount onClick={toggleSidebar} className="menu"/> </Link> </li>
