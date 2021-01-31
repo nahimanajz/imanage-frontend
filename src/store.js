@@ -4,6 +4,7 @@ import { userRegister, userLogin } from './reducers/UserReducer';
 import expenses from './reducers/ExpenseReducers';
 import debits from './reducers/DebitReducer';
 import credits from './reducers/CreditReducer';
+import deposits from './reducers/DepositReducer';
 
 //const userInfo = JSON.parse(localStorage.getItem('user'));
 const initialState = { };
@@ -14,7 +15,8 @@ const reducer = combineReducers({
     userLogin,
     expenses,
     debits,
-    credits
+    credits,
+    deposits
 });
 const store = createStore(reducer, initialState, composeEnhancer(applyMiddleware(thunk)));
 export default store;

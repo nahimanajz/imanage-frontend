@@ -6,7 +6,7 @@ import { headers, userInfo, user_id } from "../helpers/userInfo";
 import moment from "moment";
 import { FaSearch, FaWindowClose } from 'react-icons/fa';
 import { Loading } from "../helpers/Loading";
-import { Datatable } from "../helpers/datatable";
+// import { Datatable } from "../helpers/datatable";
 import {Pagination, makePages} from "../components/Pagination";
     
 function ExpensePage(props) {
