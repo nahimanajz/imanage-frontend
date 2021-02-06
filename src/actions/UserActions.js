@@ -9,9 +9,9 @@ const saveUser = ( userData ) =>async(dispatch)=>{
     dispatch({type: uc.USER_REGISTER_REQUEST, payload: userData });
     try{
        const {data} = await axios.post(route.URL_INDEX+"/users", userData);       
-       const errors = Object.entries(data.message);        
-      return message(data, errors);     
-          
+       const errors = Object.entries(data.message);  
+       dispatch({type:uc.USER_REGISTER_SUCCESS, payload: data});      
+      return message(data, errors);       
     } catch(error){       
         dispatch({type: uc.USER_REGISTER_FAIL, payload: error.message});
     }
@@ -28,7 +28,8 @@ const login = (email, password) => async(dispatch) => {
          window.location.assign("/expenses");
         }
     }catch(error){
-        toast.error(error.message);
+        console.log(error.message);
+        toast.error("Please provide email and password");
     }
 }
 export {saveUser, login};
