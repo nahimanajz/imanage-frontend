@@ -9,7 +9,8 @@ const saveUser = ( userData ) =>async(dispatch)=>{
     dispatch({type: uc.USER_REGISTER_REQUEST, payload: userData });
     try{
        const {data} = await axios.post(route.URL_INDEX+"/users", userData);       
-       const errors = Object.entries(data.message);        
+       const errors = Object.entries(data.message);  
+       dispatch({type:uc.USER_REGISTER_SUCCESS, payload: data});      
       return message(data, errors);       
     } catch(error){       
         dispatch({type: uc.USER_REGISTER_FAIL, payload: error.message});

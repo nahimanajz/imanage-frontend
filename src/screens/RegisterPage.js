@@ -5,15 +5,14 @@ import { saveUser } from "../actions/UserActions";
 import { useForm } from 'react-hook-form';
 import validationSchema from "../helpers/SignupSchema";
 import { ErrorMessemail, Formik,Field, Form, useFormik,  } from "formik";
-import Loader from 'react-loaders';
-import { object } from "yup/lib/locale";
-
+import { FormLoader } from "../helpers/Loading";
 
 
 function RegisterPage(props){
+    
     const userRegister = useSelector(state => state.userRegister);
-    const { loading, error } = userRegister;
-
+    const { loading, error} = userRegister;
+    
  const dispatch = useDispatch();
  const {handleSubmit, handleChange, values, errors} = useFormik({
      initialValues : {
@@ -26,7 +25,9 @@ function RegisterPage(props){
      },
      validationSchema,
      onSubmit(values) {
+    
          dispatch(saveUser(values))
+        
      }
 
  });
@@ -34,7 +35,8 @@ function RegisterPage(props){
     <main>
         <div className="aside">            
         <ul>
-            { loading && <></>} 
+            { loading ? <FormLoader /> : '' }
+                
         </ul>    
         </div>  
         <form onSubmit={handleSubmit} className="container">                
