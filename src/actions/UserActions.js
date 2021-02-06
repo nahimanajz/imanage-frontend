@@ -10,8 +10,7 @@ const saveUser = ( userData ) =>async(dispatch)=>{
     try{
        const {data} = await axios.post(route.URL_INDEX+"/users", userData);       
        const errors = Object.entries(data.message);        
-      return message(data, errors);     
-          
+      return message(data, errors);       
     } catch(error){       
         dispatch({type: uc.USER_REGISTER_FAIL, payload: error.message});
     }
@@ -28,7 +27,8 @@ const login = (email, password) => async(dispatch) => {
          window.location.assign("/expenses");
         }
     }catch(error){
-        toast.error(error.message);
+        console.log(error.message);
+        toast.error("Please provide email and password");
     }
 }
 export {saveUser, login};
