@@ -15,12 +15,13 @@ const DepositPage = () => {
     }
 
  return(
-    <main> { error && <div> {error}</div>}
-    
-        {/* <div className="modal-sm"> */}
-        <div className="modal-content">
+    <> 
+        <ul>
+            { error && <div> {error}</div>}
+        </ul>
+        <ul className="modal-content vh-center">
                 <form className="form-container white-box" onSubmit={handleDeposit}>
-                    <ul className="form">                      
+                    <ul className="form ">                      
         
                         <li>
                             <label>Amount</label>
@@ -35,10 +36,10 @@ const DepositPage = () => {
                         </li>
                     </ul>
                 </form>
-            </div>
-        {/* </div> */}
+            </ul>
+        
 
-    </main>
+    </>
  )
 }
 export default DepositPage;

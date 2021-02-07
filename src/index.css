@@ -39,8 +39,7 @@
       display: flex;
       justify-content: space-around;
       flex-direction: row;
-      flex: wrap;
-      
+      flex: wrap;   
   }
   .menu-item{
       list-style-type: none;
@@ -51,11 +50,8 @@
    .menu, .logo{color: #ecdfd0; text-shadow: 1px 1px #282e34;}
    .menu:hover { border-bottom: 4px solid var(--text-primary); }
 
-  .pancake{ display: grid; grid-template-rows: auto 1fr auto; }
-  .main {
-      height: 750px;
-      margin-top: 130px;
-  }
+
+
   .three-col {
       display: flex;
       flex: wrap;
@@ -88,17 +84,19 @@
       text-align: left;
 
   } 
-  .home-image > .content{  
+  .content{  
       font-family: 'Nerko One', cursive;
-      font-size: 68px;
-      color: var(--text-primary);   
-      text-shadow: 1px 2px white; 
+      font-size: 42px;  
+      color: #1f2124;  
+      text-shadow: 1px 2px  #666;/*var(--text-primary);   */ 
   }
   ol { list-style-type: none;}
   .wave {
      position: absolute;
-     width: 100%;
+     transform: rotate(180deg);
+     margin: 0 -32px;
   }
+ 
   .fix-header {
       position: fixed;
       top: 0;
@@ -124,7 +122,21 @@
   }
   /* create account  */
   /* Form */
-  main {display: flex; flex: auto; flex-direction: row; flex-wrap: wrap; margin: 0 16px;;}
+/* this class is container of everything */
+  .wrapper {
+    display: grid;
+    grid-template-rows: auto 100vh 100px;
+    grid-template-areas: 'header'
+                          'main'
+                          'footer';
+    
+  }
+  header {position:sticky; top:0px; }
+  main {display: flex; flex: auto; flex-direction: row; flex-wrap: wrap; margin: 0 8px; height: 100vh;}
+  footer {text-align: center; position: sticky; top: 90%;   }
+
+
+ 
   .aside { flex: 0 1 200px;}
   .container {flex: 2;}
   form.container {
@@ -134,15 +146,7 @@
     max-height: 400px;
     text-transform: uppercase;
   }
-  .footer {
-    position: fixed;
-    top: 90%;
-    height: 100px;
-    text-align: center;
-    padding:12px;
-    width: 100%;
-
-  }
+  
   
   .form-container {
    border: solid #cccccc;
@@ -253,6 +257,10 @@
     height: 40px;
     width: fit-content;
   }
+  .vh-center {
+    place-content: center;
+  }
+
   @media only screen and (max-width: 414px) {
       .wave{display:none;}
       .main{margin-top: 0px;}
@@ -260,6 +268,7 @@
       .menu-item{flex-direction: column;} 
       .modal {position: absolute;}
       .aside { flex: 1 1 100%;}
+      footer {display: none;}
     
   }
   

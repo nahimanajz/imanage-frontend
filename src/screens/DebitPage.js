@@ -44,11 +44,6 @@ function DebitPage(props) {
     const [currentPage, setCurrentPage] =  useState(1);
     const [debitsPerPage] = useState(7);
 
-    //  const indexOfLastDebit = currentPage * debitsPerPage ;
-    //  const indexOfFirstDebit = indexOfLastDebit - debitsPerPage;
-    //  const someDebits =debits;
-    //  const currentDebits = someDebits.slice(indexOfFirstDebit, indexOfLastDebit);
-
      const paginate = pageNumber => setCurrentPage(pageNumber);
             
 
@@ -58,7 +53,7 @@ function DebitPage(props) {
         )
     }
     return (
-        <main>
+        <>
             <ul className="aside sidemenu white-box">
                 <li> Debits</li>          
                 <li onClick={openModal}>Add debits</li>            
@@ -160,7 +155,7 @@ function DebitPage(props) {
                    </form>
                {/* </div> */}
             </div> 
-        </main>    
+        </>    
     )
 }
 export default DebitPage;

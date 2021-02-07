@@ -41,7 +41,7 @@ function ExpensePage(props) {
         return  <Loading />
     }
     return (
-        <main>
+        <>
             <ul className="aside sidemenu white-box">
                 <li> Expenditures</li>          
                 <li onClick={openModal}>Add expenditure</li>            
@@ -111,7 +111,7 @@ function ExpensePage(props) {
                 </div>
             </div>
            
-        </main>    
+        </>    
     )
 }
 export default ExpensePage;
