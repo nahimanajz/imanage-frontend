@@ -43,7 +43,7 @@ function CreditPage(props) {
         }
         
     return (
-        <main>
+        <>
             <ul className="aside sidemenu white-box">
                 <li> Credits</li>          
                 <li onClick={openModal}>Add Credits</li>            
@@ -103,7 +103,7 @@ function CreditPage(props) {
                    </form>
                </div>,
             </div>
-        </main>    
+        </>    
     )
 }
 export default CreditPage;

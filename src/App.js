@@ -29,32 +29,36 @@ function App(props) {
   }
   return (
     <BrowserRouter>
-        <div>
-              <div className="header f-w bg-primary">
+        <div className="wrapper">
+              <header class="header bg-primary">
                     <ul className="logo">                
-                      <Link to="/homepage" className="menu">iManage</Link>                   
+                      <Link to="/" className="menu">iManage</Link>                   
                     </ul>                             
                       <Menu />                                 
-              </div>             
+              </header>
+              <main>
+                
+                <Route path="/" component={HomePage} exact="true"/>
+                <Route path="/register" component={RegisterPage} />
+                <Route path="/login" component={LoginPage} />
+                <Route path="/debits" component={DebitPage} />
+                <Route path="/credits" component={CreditPage} />
+                <Route path="/expenses" component={ExpensePage} />
+                <Route path="/income" component={DepositPage} />
+              </main>    
               <aside className="sidebar">                  
                   <FaWindowClose onClick={toggleSidebar} size={32}/>  
                   <ul className="menu-item">
                     <li className="menu" onClick={handleLogout}> logout</li>
                   </ul>                
-              </aside>
+              </aside>          
               
-              <footer className="footer bg-primary">
+              <footer className="bg-primary">
                   Developed By <a href="janvierdev.netlify.app"> 	&#169; Janvier</a>
               </footer>
-          </div>        
-            <Route path="/homepage" component={HomePage}/>
-            <Route path="/" component={HomePage} exact="true"/>
-            <Route path="/register" component={RegisterPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/debits" component={DebitPage} />
-            <Route path="/credits" component={CreditPage} />
-            <Route path="/expenses" component={ExpensePage} />
-            <Route path="/income" component={DepositPage} />
+          </div>     
+            
+            
               
     </BrowserRouter>   
   );
